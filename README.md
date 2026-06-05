@@ -1,6 +1,8 @@
 # chiptools_crc
 
+[![CI](https://github.com/chip-tools/chiptools-crc/actions/workflows/ci.yml/badge.svg)](https://github.com/chip-tools/chiptools-crc/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/chiptools-crc.svg)](https://pypi.org/project/chiptools-crc/)
 
 A small, dependency-free Python library for **CRC / checksum computation** and
 **read-only integrity auditing** of binary dumps.
