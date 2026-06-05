@@ -36,3 +36,6 @@ chiptools-crc = "chiptools_crc.cli:main"
 
 [tool.setuptools]
 packages = ["chiptools_crc"]
+
+[tool.setuptools.package-data]
+chiptools_crc = ["py.typed"]
