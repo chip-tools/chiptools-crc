@@ -1,0 +1,8 @@
+# Normalize line endings: store as LF in the repo, check out per-platform.
+* text=auto eol=lf
+
+# Binary dump formats — never apply text/EOL conversion.
+*.bin binary
+*.eep binary
+*.ori binary
+*.e2p binary
