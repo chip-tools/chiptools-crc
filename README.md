@@ -221,7 +221,7 @@ bounds checking).
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md). This is the initial `0.1.0` release.
+See [CHANGELOG.md](CHANGELOG.md). Latest release: `0.1.1`.
 
 ## License
 
