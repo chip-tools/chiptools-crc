@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-05
+
 ### Added
 
 - `CONTRIBUTING.md` with development setup, test/PR workflow, and project scope.
@@ -54,5 +56,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Repository config** — `.gitattributes` for consistent line-ending
   normalization and binary dump handling (`*.bin`, `*.eep`, `*.ori`, `*.e2p`).
 
-[Unreleased]: https://github.com/chip-tools/chiptools-crc/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/chip-tools/chiptools-crc/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/chip-tools/chiptools-crc/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/chip-tools/chiptools-crc/releases/tag/v0.1.0

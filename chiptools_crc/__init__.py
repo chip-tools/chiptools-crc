@@ -10,7 +10,7 @@ from .catalog import CATALOG, FAMILIES
 from .crc import Crc, Sum, reflect
 from .integrity import IntegrityReport, Region, RegionResult, verify_integrity
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "Crc",
