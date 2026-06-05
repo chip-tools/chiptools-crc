@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `CONTRIBUTING.md` with development setup, test/PR workflow, and project scope.
+- `examples/` directory with runnable usage scripts (`compute_crc.py`,
+  `audit_dump.py`) and a short README.
+
 ## [0.1.0] - 2026-06-05
 
 ### Added
@@ -29,11 +35,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     when coherent, 1 when at least one region is `ALTERED`.
 - **Packaging** — `pyproject.toml` for standard `pip install`, registering the
   `chiptools-crc` console script. Pure standard library, no runtime deps.
+  Ships a `py.typed` marker (PEP 561) so downstream type checkers pick up the
+  inline type hints.
 - **Test suite** — pytest validating `b"123456789"` against 14 independently
   hard-coded Reveng check values, full-catalogue self-consistency, the
   integrity-audit path, and the CLI (text and JSON output).
-- **Documentation** — README with library, CLI, and workshop-audit usage; MIT
-  license.
+- **Continuous integration** — GitHub Actions test matrix on Python 3.9–3.13
+  for every push/PR, plus build + publish to PyPI via Trusted Publishing on
+  `v*` tags.
+- **Documentation** — README (with CI / PyPI / MIT badges) covering library,
+  CLI, and workshop-audit usage; MIT license.
+- **Repository config** — `.gitattributes` for consistent line-ending
+  normalization and binary dump handling (`*.bin`, `*.eep`, `*.ori`, `*.e2p`).
 
 [Unreleased]: https://github.com/chip-tools/chiptools-crc/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/chip-tools/chiptools-crc/releases/tag/v0.1.0
