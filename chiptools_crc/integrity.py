@@ -14,9 +14,9 @@ layout; nothing here is specific to any particular firmware.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Literal
+from typing import Literal
 
-from .crc import Crc, Sum
+from .crc import SupportsChecksum
 
 Endian = Literal["big", "little"]
 
@@ -58,7 +58,7 @@ class RegionResult:
 
 @dataclass(frozen=True)
 class IntegrityReport:
-    results: List[RegionResult] = field(default_factory=list)
+    results: list[RegionResult] = field(default_factory=list)
 
     @property
     def consistent(self) -> bool:
@@ -66,7 +66,7 @@ class IntegrityReport:
         return all(r.consistent for r in self.results)
 
     @property
-    def altered(self) -> List[RegionResult]:
+    def altered(self) -> list[RegionResult]:
         """Regions whose stored checksum does not match — evidence of editing."""
         return [r for r in self.results if not r.consistent]
 
@@ -84,7 +84,9 @@ def _read_int(data: bytes, off: int, length: int, endian: Endian) -> int:
     return int.from_bytes(chunk, endian)
 
 
-def verify_integrity(data: bytes, regions: List[Region], algo) -> IntegrityReport:
+def verify_integrity(
+    data: bytes, regions: list[Region], algo: SupportsChecksum
+) -> IntegrityReport:
     """Audit ``data``: recompute each region's checksum and compare to stored.
 
     Returns an :class:`IntegrityReport`. ``report.consistent`` is True when the
@@ -95,10 +97,10 @@ def verify_integrity(data: bytes, regions: List[Region], algo) -> IntegrityRepor
     ``algo`` is any object with a ``compute(bytes) -> int`` method
     (:class:`~chiptools_crc.crc.Crc` or :class:`~chiptools_crc.crc.Sum`).
     """
-    if not isinstance(algo, (Crc, Sum)) and not hasattr(algo, "compute"):
+    if not callable(getattr(algo, "compute", None)):
         raise TypeError("algo must provide a compute(bytes) -> int method")
 
-    results: List[RegionResult] = []
+    results: list[RegionResult] = []
     for r in regions:
         stored = _read_int(data, r.crc_start, r.crc_len, r.endian)
         computed = algo.compute(data[r.data_start:r.data_start + r.data_len])

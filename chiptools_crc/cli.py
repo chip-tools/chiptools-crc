@@ -13,7 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from typing import List, Optional, Tuple
+from typing import cast
 
 from .catalog import CATALOG, FAMILIES
 from .integrity import Region, RegionResult, verify_integrity
@@ -24,7 +24,7 @@ def _parse_int(text: str) -> int:
     return int(text, 0)
 
 
-def _parse_region(spec: str) -> Tuple[int, int, Optional[int]]:
+def _parse_region(spec: str) -> tuple[int, int, int | None]:
     """Parse 'START:LEN[:STORED_HEX]' -> (start, length, stored_or_None)."""
     parts = spec.split(":")
     if len(parts) not in (2, 3):
@@ -39,7 +39,7 @@ def _parse_region(spec: str) -> Tuple[int, int, Optional[int]]:
     return start, length, stored
 
 
-def cmd_list(args) -> int:
+def cmd_list(args: argparse.Namespace) -> int:
     families = [args.family] if args.family else list(FAMILIES)
     for fam in families:
         if fam not in FAMILIES:
@@ -56,7 +56,7 @@ def cmd_list(args) -> int:
     return 0
 
 
-def cmd_audit(args) -> int:
+def cmd_audit(args: argparse.Namespace) -> int:
     if args.algo not in CATALOG:
         print(f"unknown algo: {args.algo} (use 'list' to see all)", file=sys.stderr)
         return 2
@@ -77,7 +77,7 @@ def cmd_audit(args) -> int:
               file=sys.stderr)
         return 2
 
-    results: List[RegionResult] = []
+    results: list[RegionResult] = []
     try:
         for start, length, stored in specs:
             name = f"region@0x{start:X}+0x{length:X}"
@@ -151,10 +151,10 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Optional[List[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
-    return args.func(args)
+    return cast(int, args.func(args))
 
 
 if __name__ == "__main__":  # pragma: no cover

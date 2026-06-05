@@ -9,14 +9,17 @@ This catalogue intentionally contains ONLY public, standard algorithms.
 
 from __future__ import annotations
 
-from typing import Dict, Union
+from typing import Union
 
 from .crc import Crc, Sum
 
 Model = Union[Crc, Sum]
 
 
-def _c(name, width, poly, init, refin, refout, xorout, check) -> Crc:
+def _c(
+    name: str, width: int, poly: int, init: int,
+    refin: bool, refout: bool, xorout: int, check: int,
+) -> Crc:
     return Crc(width, poly, init, refin, refout, xorout, name=name, check=check)
 
 
@@ -98,7 +101,7 @@ _CRC32 = [
 ]
 
 
-CATALOG: Dict[str, Model] = {
+CATALOG: dict[str, Model] = {
     m.name: m for m in (_SUM + _CRC8 + _CRC16 + _CRC32)
 }
 

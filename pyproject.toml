@@ -26,6 +26,7 @@ dependencies = []
 
 [project.optional-dependencies]
 test = ["pytest>=7.0"]
+lint = ["ruff>=0.5", "mypy>=1.10"]
 
 [project.urls]
 Homepage = "https://github.com/chip-tools/chiptools-crc"
@@ -39,3 +40,18 @@ packages = ["chiptools_crc"]
 
 [tool.setuptools.package-data]
 chiptools_crc = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]  # core + isort + pyupgrade + bugbear
+
+[tool.mypy]
+# Analysis target: the installed mypy requires >=3.10 here. The package itself
+# still supports 3.9 at runtime — that floor is enforced by
+# ruff target-version = "py39" and requires-python = ">=3.9".
+python_version = "3.10"
+strict = true
+files = ["chiptools_crc"]

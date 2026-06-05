@@ -16,7 +16,13 @@ care what the bytes mean.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Protocol
+
+
+class SupportsChecksum(Protocol):
+    """Anything exposing ``compute(bytes) -> int`` (e.g. :class:`Crc`, :class:`Sum`)."""
+
+    def compute(self, data: bytes) -> int: ...
 
 
 def reflect(value: int, width: int) -> int:
@@ -43,7 +49,7 @@ class Crc:
     refout: bool
     xorout: int
     name: str = ""
-    check: Optional[int] = None  # published check value for b"123456789"
+    check: int | None = None  # published check value for b"123456789"
 
     @property
     def mask(self) -> int:
@@ -95,7 +101,7 @@ class Sum:
     width: int
     init: int = 0
     name: str = ""
-    check: Optional[int] = None
+    check: int | None = None
 
     @property
     def mask(self) -> int:

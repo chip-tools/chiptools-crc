@@ -6,9 +6,9 @@ Public API:
     Region, verify_integrity, IntegrityReport - read-only tamper auditing
 """
 
-from .crc import Crc, Sum, reflect
 from .catalog import CATALOG, FAMILIES
-from .integrity import Region, RegionResult, IntegrityReport, verify_integrity
+from .crc import Crc, Sum, reflect
+from .integrity import IntegrityReport, Region, RegionResult, verify_integrity
 
 __version__ = "0.1.0"
 

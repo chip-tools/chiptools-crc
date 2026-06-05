@@ -2,8 +2,6 @@
 
 import json
 
-import pytest
-
 from chiptools_crc import CATALOG
 from chiptools_crc.cli import main
 

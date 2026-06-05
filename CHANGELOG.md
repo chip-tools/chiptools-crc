@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CONTRIBUTING.md` with development setup, test/PR workflow, and project scope.
 - `examples/` directory with runnable usage scripts (`compute_crc.py`,
   `audit_dump.py`) and a short README.
+- Ruff and mypy (strict) configuration, a `lint` extra, and a CI lint job.
+
+### Changed
+
+- Modernized type hints to PEP 585/604 built-in generics; added a
+  `SupportsChecksum` protocol for the `verify_integrity` algorithm parameter.
 
 ## [0.1.0] - 2026-06-05
 
