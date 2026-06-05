@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chiptools-crc"
+version = "0.1.0"
+description = "CRC catalog + audit/integrity verification for binary dumps (Reveng standard library)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Chip-Tools R&D", email = "rd@chip-tools.com" },
+]
+keywords = ["crc", "checksum", "audit", "integrity", "reveng", "binary", "eeprom"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/chip-tools/chiptools-crc"
+Repository = "https://github.com/chip-tools/chiptools-crc"
+
+[project.scripts]
+chiptools-crc = "chiptools_crc.cli:main"
+
+[tool.setuptools]
+packages = ["chiptools_crc"]
